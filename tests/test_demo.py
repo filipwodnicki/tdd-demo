@@ -1,5 +1,5 @@
 """test_demo.py
-TDD Testing functions corresponding to demo.py
+Testing functions written for TDD of demo.py
 """
 
 from unittest import TestCase
@@ -47,7 +47,7 @@ class TestProcessImage(TestCase):
         self.assertTrue(actual_output.dtype, np.dtype("f"))  # Ensure output is float
 
     def test_normalize(self):
-        """Ensure values go from int [0, 255] to float [0, 1]"""
+        """Ensure values are correctly normalized from int8 [0, 255] to single float [0.0, 1.0]"""
 
         # Given
         input_image = np.array([[209.0, 138.66666667], [144.0, 151.0]], dtype="f")
