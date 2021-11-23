@@ -1,5 +1,5 @@
 """demo.py
-Small demo file that shows corresponding tests.
+Small demo file of processing an image that shows corresponding tests.
 """
 import numpy as np
 
@@ -35,5 +35,18 @@ def process_image(image_array: np.array) -> np.array:
     return normalized_grayscale_image
 
 
+def main():
+    print("This is a TDD demo...")
+    print("All the fun happened while iteratively writing tests and code.")
+    print("But here's the finished code scenario:\n")
+    print("We start with a 4x4 RGB image")
+    image = np.random.randint(256, size=(3, 4, 4), dtype="B")
+    print(image)
+    print("\nIt get's processed: converted to grayscale and normalized.")
+    print("Here it is:")
+    processed_image = process_image(image)
+    print(processed_image)
+
+
 if __name__ == "__main__":
-    pass
+    main()
