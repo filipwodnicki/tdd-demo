@@ -50,7 +50,7 @@ class TestProcessImage(TestCase):
         """Ensure values go from int [0, 255] to float [0, 1]"""
 
         # Given
-        input_image = [np.array([[209.0, 138.66666667], [144.0, 151.0]], dtype="f")]
+        input_image = np.array([[209.0, 138.66666667], [144.0, 151.0]], dtype="f")
 
         # Do
         actual_output = _normalize(input_image)

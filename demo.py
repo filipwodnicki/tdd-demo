@@ -15,21 +15,24 @@ def _convert_to_grayscale(image: np.array) -> np.array:
 
 
 def _normalize(image: np.array) -> np.array:
-    """Normalizes integer array [0,255] to [0,1]"""
+    """Normalizes single float integer array from [0,255] to [0,1]"""
+    assert image.dtype == np.dtype("single")
 
-    pass
+    return image / 255
 
 
 def process_image(image_array: np.array) -> np.array:
     """Converts image to grayscale and returns normalized 0 to 1
 
     # Input
-    image_array (np.array) -> image that is 10 x 10 x 3 in 8-bit (0-255)
+    image_array (np.array) -> image that is 10 x 10 x 3 in 8-bit [0-255]
 
     # Output
-    image_array (np.array) -> image that is 10 x 10 x 1 grayscale, normalized (0-1)
+    image_array (np.array) -> image that is 10 x 10 x 1 grayscale, normalized [0-1]
     """
-    pass
+    grayscale_image = _convert_to_grayscale(image_array)
+    normalized_grayscale_image = _normalize(grayscale_image)
+    return normalized_grayscale_image
 
 
 if __name__ == "__main__":
