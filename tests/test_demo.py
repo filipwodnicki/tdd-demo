@@ -4,7 +4,7 @@ TDD Testing functions corresponding to demo.py
 
 from unittest import TestCase
 import numpy as np
-from demo import process_image, _convert_to_grayscale
+from demo import _convert_to_grayscale, _normalize
 
 
 class TestProcessImage(TestCase):
@@ -50,16 +50,13 @@ class TestProcessImage(TestCase):
         """Ensure values go from int [0, 255] to float [0, 1]"""
 
         # Given
-        input = [
-            np.random.randint(256, size=(4, 4, 3)),
-            np.random.randint(256, size=(10, 10, 3)),
-            np.random.randint(256, size=(100, 100, 3)),
-            np.random.randint(256, size=(1000, 1000, 3)),
-        ]
+        input_image = [np.array([[209.0, 138.66666667], [144.0, 151.0]], dtype="f")]
 
         # Do
-        for image in input:
-            actual_output = process_image(image)
+        actual_output = _normalize(input_image)
 
-            # Compare
-            self.assertIsInstance(actual_output.flat, np.floating)
+        # Compare
+        expected_output = np.array(
+            [[0.81960785, 0.5437909], [0.5647059, 0.5921569]], dtype="f"
+        )
+        self.assertIsNone(np.testing.assert_equal(actual_output, expected_output))
