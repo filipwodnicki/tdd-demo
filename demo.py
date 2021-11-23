@@ -6,11 +6,12 @@ import numpy as np
 
 def _convert_to_grayscale(image: np.array) -> np.array:
     """Converts 8-bit image array from RGB to grayscale by averaging RGB inputs"""
+
     assert image.dtype == np.dtype("uint8"), "array not 8-bit unsigned"
     assert len(image.shape) == 3, "image array needs to have three dimensions"
     assert image.shape[0] == 3, "image needs to be composed of three layers, RGB"
 
-    return np.mean(image, axis=0)
+    return np.mean(image, axis=0).astype("f", copy=False)
 
 
 def _normalize(image: np.array) -> np.array:

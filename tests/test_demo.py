@@ -29,7 +29,22 @@ class TestProcessImage(TestCase):
             )  # dimension and 1 and 2 should be unchanged
 
     def test_grayscale_functionality(self):
-        self.fail
+        """Ensure image gets averaged and converted from uint-8 to single float"""
+
+        # Given
+        image = np.array(
+            [[[209, 215], [188, 134]], [[225, 65], [3, 74]], [[193, 136], [241, 245]]],
+            dtype="B",
+        )
+
+        # Do
+        actual_output = _convert_to_grayscale(image)
+
+        # Compare
+        expected_output = np.array([[209.0, 138.66666667], [144.0, 151.0]], dtype="f")
+        print(actual_output)
+        self.assertIsNone(np.testing.assert_equal(actual_output, expected_output))
+        self.assertTrue(actual_output.dtype, np.dtype("f"))  # Ensure output is float
 
     def test_normalize(self):
         """Ensure values go from int [0, 255] to float [0, 1]"""
